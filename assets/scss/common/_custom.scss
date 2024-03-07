@@ -1,0 +1,18 @@
+// Primevue - Dropdown 수정
+.p-dropdown-panel.p-component {
+  font-size: 14px;
+}
+
+.p-dropdown .p-dropdown-label.p-inputtext {
+  padding: 2px 6px;
+  font-size: 14px;
+}
+
+.p-dropdown-trigger {
+  width: unset;
+  padding-right: 5px;
+
+  svg {
+    width: 14px;
+  }
+}

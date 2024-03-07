@@ -1,0 +1,1131 @@
+@mixin study-card {
+  .study-card {
+    display: flex;
+    flex-direction: column;
+    width: $study-card-width;
+    height: $study-card-height;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.42);
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: center;
+    // font-size: 35px;
+    // font-weight: 600;
+    transition:
+      transform 300ms ease,
+      opacity 200ms linear !important;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    user-select: none;
+
+    .study-card__known {
+      position: absolute;
+      top: -115px;
+      right: -115px;
+      width: 230px;
+      height: 230px;
+      border-radius: 230px;
+      z-index: 1;
+      color: #fff;
+      font-size: 14px;
+      background: $color-success;
+
+      &.show {
+        display: block;
+        background: $color-success;
+      }
+
+      i {
+        position: absolute;
+        left: 0;
+        bottom: 60px;
+        padding-left: 20px;
+        text-align: center;
+        width: 50%;
+        font-size: 40px;
+        color: #fff;
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        bottom: 40px;
+        padding-left: 20px;
+        text-align: center;
+        width: 50%;
+        font-weight: 600;
+      }
+    }
+
+    .study-card__try-again {
+      position: absolute;
+      top: -115px;
+      right: -115px;
+      width: 230px;
+      height: 230px;
+      border-radius: 230px;
+      z-index: 1;
+      color: #fff;
+      background: $color-danger;
+
+      &.show {
+        display: block;
+        background: $color-danger;
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        bottom: 35px;
+        padding-left: 25px;
+        width: 50%;
+        font-weight: 500;
+        font-size: 24px;
+      }
+    }
+
+    // study-card__top 공통
+    .study-card__top {
+      height: 50%;
+      padding: 10px;
+      box-sizing: border-box;
+
+      .study-card__top-control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 30px;
+
+        .pi {
+          font-size: 20px;
+          color: $color-gray;
+
+          &.active {
+            color: $color-success;
+          }
+
+          &.bookmarked {
+            color: $color-warning;
+          }
+        }
+
+        .bookmark-button {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      .study-card-question {
+        &.study-card-audio {
+          justify-content: center;
+          height: 100% !important;
+          padding: 0 !important;
+        }
+
+        .study-card-audio {
+          .audio-button button {
+            width: auto;
+
+            span {
+              font-size: 64px;
+              color: $color-gray;
+
+              &.active {
+                color: $color-success;
+              }
+            }
+          }
+        }
+      }
+
+      .study-card-question-animation {
+        position: absolute;
+        animation: word-known 1s ease-in-out forwards;
+        z-index: 2;
+      }
+    }
+
+    // study-card__bottom 공통
+    .study-card__bottom {
+      @include flex-center;
+      position: relative;
+      height: 50%;
+      border-top: 1px solid $color-border;
+
+      &.no-border-top {
+        border-top: none;
+      }
+
+      .study-card__bottom-answer {
+        width: 100%;
+        height: 100%;
+
+        .study-card__bottom-answer__text {
+          font-size: 32px;
+          font-weight: 600;
+        }
+
+        .study-card__bottom-answer__multiple {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          width: 100%;
+          height: 100%;
+
+          &:not(.answered) {
+            .study-card__bottom-answer__multiple-item {
+              cursor: pointer;
+
+              &:hover {
+                background: lighten($color-success, 5%);
+                color: white;
+              }
+
+              &:active {
+                background: darken($color-success, 5%);
+                color: white;
+              }
+            }
+          }
+
+          .study-card__bottom-answer__multiple-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+            width: 100%;
+            padding: 0 20px;
+
+            & + .study-card__bottom-answer__multiple-item {
+              border-top: 1px solid $color-border;
+            }
+
+            &.selected {
+              color: $color-primary;
+              font-weight: 600;
+            }
+
+            &.correct {
+              border: 2px solid $color-success;
+              color: $color-success;
+              font-weight: 600;
+            }
+
+            &.selected.incorrect {
+              color: $color-danger;
+              font-weight: 600;
+            }
+
+            .study-card__bottom-answer__multiple-item-content {
+              @include flex-center;
+
+              .study-card__bottom-answer__multiple-item-number {
+                margin-right: 10px;
+                font-size: 20px;
+                font-weight: 600;
+              }
+
+              .study-card__bottom-answer__multiple-item-answer {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        .study-card__bottom-answer__spell {
+          width: 100%;
+          padding: 0 30px;
+
+          .study-card__bottom-answer__spell-input {
+            width: 100%;
+          }
+
+          .study-card__bottom-answer__spell-guide {
+            height: 21px;
+            position: relative;
+
+            .study-card__bottom-answer__spell-hint {
+              margin-top: 10px;
+              font-size: 14px;
+              color: $color-help;
+              cursor: pointer;
+
+              &:hover {
+                color: lighten($color-help, 10%);
+              }
+
+              &:active {
+                color: darken($color-help, 5%);
+              }
+            }
+
+            .study-card__bottom-answer__spell-immediate-incorrect {
+              position: absolute;
+              top: 50%;
+              left: 0;
+              transform: translateY(-50%);
+              font-size: 14px;
+              color: $color-danger;
+            }
+
+            .study-card__bottom-answer__spell-answer {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              gap: 6px;
+              margin-top: 10px;
+              color: $color-success;
+
+              .study-card__bottom-answer__spell-answer-text {
+                font-size: 16px;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+
+        .study-card__bottom-answer__hint {
+          font-size: 30px;
+          color: $color-success;
+        }
+      }
+
+      .study-card-explanation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        width: 100%;
+        height: 100%;
+
+        padding: 30px;
+
+        .study-card-explanation__answer {
+          display: flex;
+          gap: 5px;
+
+          .study-card-explanation__answer__text {
+            font-weight: 600;
+          }
+        }
+
+        .study-card-explanation__translation {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .study-card-word {
+      width: 100%;
+      height: 100%;
+
+      .study-card__top {
+        .study-card-question {
+          @include flex-center;
+          position: relative;
+          width: 100%;
+          height: calc(100% - 30px);
+
+          .study-card-question__text {
+            font-size: 35px;
+            font-weight: 600;
+          }
+
+          .study-card-example {
+            line-height: 36px;
+            font-size: 24px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .study-card__bottom {
+        .study-card__bottom-cover {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: $color-success;
+          box-shadow:
+            0 0 7px 0 rgba(0, 0, 0, 0.31),
+            inset 0 1px 0 0 #8eda51;
+          transition: height 300ms ease;
+          z-index: 3;
+          cursor: pointer;
+
+          &.showing {
+            height: 0;
+            cursor: default;
+          }
+        }
+
+        .study-card__bottom-answer {
+          @include flex-center;
+        }
+      }
+    }
+
+    .study-card-sentence {
+      width: 100%;
+      height: 100%;
+
+      &.sentence-memorize {
+        .study-card__top .study-card-question {
+          display: block;
+          text-align: left;
+
+          .study-card-question-animation {
+            top: 20px;
+          }
+        }
+      }
+
+      &.sentence-preview {
+        .study-card__top {
+          height: 100%;
+        }
+
+        .study-card__bottom {
+          display: none;
+        }
+      }
+
+      &.sentence-chunk {
+        .study-card__top {
+          height: 70%;
+
+          .study-card-question {
+            display: block;
+            text-align: left;
+
+            .study-card-question-animation {
+              top: 20px;
+            }
+          }
+        }
+
+        .study-card__bottom {
+          height: 30%;
+
+          .study-card__bottom-answer {
+            padding: 15px 30px;
+          }
+        }
+      }
+
+      .study-card__top {
+        .study-card-preview {
+          height: calc(100% - 20px);
+          padding: 20px 10px;
+          text-align: left;
+
+          .study-card-preview-text {
+            font-size: 24px;
+            font-weight: 600;
+          }
+
+          .study-card-preview-translation {
+            margin-top: 50px;
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+
+        .study-card-question {
+          display: flex;
+          align-items: center;
+          position: relative;
+          width: 100%;
+          height: calc(100% - 20px);
+          padding: 20px;
+
+          .study-card-question__text {
+            font-size: 24px;
+            font-weight: 600;
+
+            .chunk-answers {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 6px;
+
+              .correct {
+                color: $color-success;
+              }
+
+              .incorrect {
+                color: $color-danger;
+              }
+            }
+          }
+
+          .study-card-question__blank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            .blank {
+              color: $color-primary;
+            }
+
+            .correct {
+              color: $color-success;
+            }
+
+            .incorrect {
+              color: $color-danger;
+            }
+          }
+        }
+      }
+
+      .study-card__bottom {
+        .study-card__bottom-answer {
+          .study-card__bottom-answer__chunk {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: 100%;
+            text-align: left;
+
+            &.answer {
+              justify-content: flex-end;
+
+              .study-card__answer {
+                margin: 10px 0;
+                color: $color-success;
+                font-size: 18px;
+                font-weight: 600;
+              }
+            }
+
+            .study-card__translation {
+              font-weight: 600;
+              color: $color-help;
+            }
+          }
+
+          .study-card__bottom-answer__spell {
+            height: 100%;
+            padding: 30px;
+
+            .study-card__bottom-answer__spell-input {
+              height: calc(100% - 30px);
+            }
+          }
+
+          .study-card__bottom-answer__hint {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 30px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $tablet-width) {
+    .study-card {
+      max-width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    .carousel-container .carousel-navigation {
+      display: none;
+    }
+
+    .study-card {
+      width: calc(100vw - 10px);
+      height: 100%;
+
+      .study-card-sentence.sentence-chunk
+        .study-card__bottom
+        .study-card__bottom-answer {
+        .study-card__chunks {
+          height: calc(100% - 30px);
+        }
+      }
+
+      .study-card__bottom
+        .study-card__bottom-answer
+        .study-card__bottom-answer__spell
+        .study-card__bottom-answer__spell-guide
+        .study-card__bottom-answer__spell-hint {
+        text-align: right;
+      }
+    }
+  }
+}
+
+@mixin test-card {
+  .test-card {
+    display: flex;
+    flex-direction: column;
+    width: $test-card-width;
+    height: $test-card-height;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.42);
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: center;
+    // font-size: 35px;
+    // font-weight: 600;
+    transition:
+      transform 300ms ease,
+      opacity 200ms linear !important;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    user-select: none;
+
+    .test-card-ready {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 20px;
+
+      .test-card-ready-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 45px;
+
+        .test-card-ready-header-text {
+          @include flex-center;
+          position: relative;
+          width: 150px;
+          height: 40px;
+          margin: 0 -20px;
+          padding: 6px;
+          background-color: $color-danger;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 4px;
+          color: $color-white;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: calc(100% - 20px);
+            right: -40px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-bottom: 40px solid transparent;
+            border-left: 40px solid $color-danger;
+          }
+        }
+
+        .test-card-ready-header-only-incorrect {
+          @include flex-center;
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          padding: 6px 10px;
+          background-color: $color-gray;
+          border-radius: 0 6px;
+          font-size: 12px;
+          // font-weight: 600;
+          letter-spacing: 4px;
+          color: $color-white;
+        }
+
+        .test-card-ready-header-avatar {
+          width: 45px;
+          height: 45px;
+          border-radius: 100%;
+          background-color: $color-background;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .test-card-ready-header-title {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+
+      .test-card-ready-body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+
+        .test-card-ready-body-title {
+          padding: 20px;
+          font-size: 60px;
+          font-weight: 800;
+
+          .test-card-ready-body-title-count {
+            color: $color-primary;
+          }
+
+          .test-card-ready-body-title-text {
+            color: $color-success;
+          }
+        }
+
+        .test-card-ready-body-history {
+          flex: 1;
+          overflow: auto;
+
+          .test-card-ready-body-history-item {
+            @include flex-center;
+            gap: 10px;
+
+            .test-card-ready-body-history-item-score {
+              font-weight: 600;
+            }
+          }
+        }
+
+        .test-card-ready-body-subtitle {
+          height: 20px;
+          margin-top: 12px;
+        }
+      }
+
+      .test-card-ready-bottom {
+        @include flex-center;
+        margin-top: 30px;
+      }
+    }
+
+    .test-card-guide {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background-color: $color-gray;
+
+      .test-card-guide-top {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        color: $color-white;
+
+        .test-card-guide-top-line {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+
+          .test-card-guide-top-line-title {
+            width: 175px;
+            text-align: left;
+          }
+
+          .test-card-guide-top-line-text {
+            flex: 1;
+            text-align: left;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .test-card-guide-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 1;
+        padding: 20px;
+
+        .test-card-guide-body-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 10px 20px;
+          border: 1px solid $color-success;
+          font-size: 14px;
+          font-weight: 600;
+          color: $color-success;
+        }
+      }
+
+      .test-card-guide-bottom {
+        @include flex-center;
+        // margin-top: 30px;
+      }
+    }
+
+    .test-card-preview {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+
+      .test-card-preview__body {
+        @include flex-center;
+        width: 100%;
+        height: 100%;
+        font-size: 30px;
+        font-weight: 600;
+
+        .audio-button {
+          button {
+            width: auto;
+
+            span {
+              font-size: 64px;
+            }
+          }
+        }
+      }
+    }
+
+    .test-card-activity {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background-color: #f4f4f4;
+
+      // Chunk 학습에서는 여백/배경색 제거
+      &.chunk {
+        padding: 0;
+        background-color: none;
+      }
+
+      .test-card__multiple {
+        .test-card__multiple-list {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+
+          .test-card__multiple-item {
+            @include flex-center;
+            position: relative;
+            height: 113.33px;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+              .test-card__multiple-item__text {
+                color: $color-success;
+              }
+            }
+
+            &:active {
+              outline: 2px solid $color-success;
+            }
+
+            &.answered {
+              pointer-events: none;
+            }
+
+            &.correct {
+              color: $color-success;
+
+              .test-card__multiple-item__text {
+                color: $color-success;
+              }
+            }
+
+            &.incorrect {
+              color: $color-danger;
+            }
+
+            .test-card__multiple-item__number {
+              position: absolute;
+              top: 6px;
+              left: 10px;
+              font-size: 14px;
+              font-weight: 600;
+              color: #ccc;
+            }
+
+            .test-card__multiple-item__text {
+              transition: all 0.25s ease-out;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .test-card__typing {
+        @include flex-center;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+
+        .test-card__typing-wrap {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+          padding: 10px;
+
+          .test-card__typing-label {
+            font-size: 18px;
+          }
+
+          .test-card__typing-input {
+            flex: 1;
+          }
+
+          .test-card__typing-btn {
+            position: relative;
+
+            .keyboard-text {
+              position: absolute;
+              top: 100%;
+            }
+          }
+        }
+      }
+
+      .test-card__writing {
+        .test-card__writing-question {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 600;
+
+          + div {
+            margin-top: 10px;
+          }
+
+          span {
+            margin-left: 5px;
+          }
+        }
+
+        .test-card__writing-input {
+          position: relative;
+        }
+
+        .test-card__writing-btn {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          text-align: right;
+        }
+      }
+
+      .test-card__chunk {
+        height: 100%;
+
+        .test-card__chunk-top {
+          position: relative;
+          height: 70%;
+          padding: 30px;
+          background-color: #fff;
+          text-align: left;
+
+          .test-card__chunk-text {
+            font-size: 24px;
+            font-weight: 600;
+
+            .chunk-answers {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 6px;
+
+              .correct {
+                color: $color-success;
+              }
+
+              .incorrect {
+                color: $color-danger;
+              }
+            }
+          }
+        }
+
+        .test-card__chunk-bottom {
+          height: 30%;
+          padding: 15px 30px;
+
+          .test-card__translation {
+            font-weight: 600;
+            color: $color-help;
+            text-align: left;
+          }
+
+          .test-card__chunks {
+            height: 100%;
+            margin-top: 10px;
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .test-card-complete {
+      width: 100%;
+      height: 100%;
+      background-image: url('../../images/bg-complete-test.png');
+      background-size: contain;
+
+      .test-card-complete-top {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: 70%;
+        padding: 115px 20px;
+
+        .test-card-complete-score {
+          font-size: 64px;
+          font-weight: 800;
+          color: $color-help;
+        }
+
+        .test-card-complete-goal {
+          font-size: 26px;
+          font-weight: 600;
+          color: $color-success;
+        }
+      }
+
+      .test-card-complete-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 20px;
+      }
+    }
+
+    .test-card__top-control {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
+  @media screen and (max-width: $tablet-width) {
+    .test-card {
+      max-width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    .test-card {
+      width: calc(100vw - 10px);
+      height: 100%;
+
+      .test-card-activity
+        .test-card__chunk
+        .test-card__chunk-bottom
+        .test-card__chunks {
+        height: calc(100% - 30px);
+      }
+    }
+  }
+
+  // @media screen and (max-width: $mobile-width) {
+  //   .carousel-container .carousel-navigation {
+  //     display: none;
+  //   }
+
+  //   .study-card {
+  //     width: calc(100vw - 10px);
+  //     height: 100%;
+
+  //     .study-card-sentence.sentence-chunk
+  //       .study-card__bottom
+  //       .study-card__bottom-answer {
+  //       .study-card__chunks {
+  //         height: calc(100% - 30px);
+  //       }
+  //     }
+
+  //     .study-card__bottom
+  //       .study-card__bottom-answer
+  //       .study-card__bottom-answer__spell
+  //       .study-card__bottom-answer__spell-guide
+  //       .study-card__bottom-answer__spell-hint {
+  //       text-align: right;
+  //     }
+  //   }
+  // }
+}
+
+@mixin setting-test-count {
+  .setting-test-count {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    .setting-test-count-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .setting-test-count-title {
+        font-weight: 600;
+      }
+    }
+
+    .setting-test-count-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .setting-test-count-title {
+        font-weight: 600;
+      }
+
+      .setting-test-count-input {
+        &.p-invalid {
+          .p-inputtext {
+            border-color: $color-danger;
+            color: $color-danger;
+          }
+        }
+
+        .p-inputtext {
+          width: 40px;
+          height: 24px;
+          padding: 5px;
+          font-size: 14px;
+        }
+
+        .p-inputnumber-button-group {
+          .p-button.p-button-icon-only {
+            width: 16px;
+            height: 12px;
+          }
+
+          .p-icon {
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+}

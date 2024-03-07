@@ -1,0 +1,18 @@
+// Layout 크기
+$layout-header-height: 48px;
+$layout-content-height: calc(100% - #{$layout-header-height});
+
+// 크기
+$activity-width: 720px;
+
+$study-card-width: 600px;
+$study-card-height: 400px;
+$test-card-width: 600px;
+$test-card-height: 400px;
+
+// 기기 크기에 따른 화면 크기를 조정하기 위해 선언
+$tablet-width: 768px;
+$mobile-width: 576px;
+
+// 스크롤 크기
+$main-scroll-width: 6px;

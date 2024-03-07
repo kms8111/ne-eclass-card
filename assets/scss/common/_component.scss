@@ -1,0 +1,563 @@
+// Loading 컴포넌트
+.loading {
+  @include flex-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.31);
+
+  .loading-wrap {
+    @include flex-center;
+    flex-direction: column;
+    gap: 20px;
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 14px;
+  }
+}
+
+// FlashText 컴포넌트
+.flash-text {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: #000;
+  opacity: 1;
+  animation: fadeOut 1s ease-in-out 1s forwards;
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+.switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  margin-top: 5px;
+
+  .switch-label {
+    align-self: center;
+    font-size: 14px;
+    color: #222328;
+  }
+
+  .switch-input {
+    align-self: center;
+    font-size: 14px;
+    color: #222328;
+  }
+}
+
+.tabs {
+  .p-tabview-nav {
+    .p-tabview-header {
+      flex: 1;
+      border-bottom: 1px solid #ccc;
+
+      & + .p-tabview-header {
+        border-left: 1px solid #ccc;
+      }
+
+      &.p-highlight .p-tabview-nav-link {
+        background-color: lighten($color-success, 35%);
+      }
+
+      .p-tabview-nav-link {
+        padding: 12px 10px;
+        border-bottom: none;
+        font-weight: 600;
+        color: #000;
+        background-color: #f4f4f4;
+
+        .p-tabview-title {
+          width: 100%;
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .p-tabview-panels {
+    padding: 0;
+  }
+}
+
+// PlaceholderText 컴포넌트
+.placeholder-text {
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $color-gray;
+  opacity: 0.35;
+}
+
+// KeyboardText 컴포넌트
+.keyboard-text {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7c7c7c;
+}
+
+// TextBadge 컴포넌트
+.text-badge {
+  width: 40px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.correct {
+    background-color: $color-success;
+    color: #fff;
+  }
+}
+
+// ActivityButton 컴포넌트
+.activity-button-wrap {
+  @include flex-center;
+  flex-direction: column;
+  width: 250px;
+
+  &.small {
+    width: 125px;
+
+    .activity-button {
+      width: 100%;
+    }
+  }
+
+  .keyboard-text {
+    margin-top: 6px;
+  }
+}
+.activity-button {
+  width: 250px;
+  // margin-bottom: 6px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+// ActivityInput 컴포넌트
+.activity-input {
+  width: 100%;
+  height: 100%;
+  padding: 12px 15px;
+  border: 1px solid $color-tertiary;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: inherit;
+  resize: none;
+
+  &.multiline {
+    height: 125px;
+  }
+
+  &:focus {
+    outline: 1px solid $color-primary;
+  }
+
+  &::placeholder {
+    font-weight: 600;
+    color: $color-tertiary;
+  }
+
+  &.correct {
+    outline: none;
+    border-color: $color-success;
+    color: $color-success;
+  }
+
+  &.incorrect {
+    outline: none;
+    border-color: $color-danger;
+    color: $color-danger;
+  }
+
+  &.immediate-incorrect {
+    color: $color-danger;
+  }
+}
+
+// Carousel 컴포넌트
+.carousel-container {
+  height: 100%;
+  overflow: hidden;
+
+  .carousel-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+
+    .carousel-item {
+      height: 100%;
+    }
+  }
+
+  .carousel-navigation {
+    @include flex-center;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+
+    .carousel-navigation__btn {
+      .p-button-icon::before {
+        color: #fff;
+      }
+
+      &.carousel-navigation__btn-prev {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.carousel-navigation__btn-next {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+// WordChunks 컴포넌트
+.word-chunks {
+  .word-chunks-list {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    overflow-x: auto;
+
+    .word-chunks-item {
+      font-size: 16px;
+      font-weight: 600;
+      border: $color-border 1px solid;
+      border-radius: 4px;
+      padding: 6px 8px;
+      color: $color-gray;
+      cursor: pointer;
+
+      &:hover {
+        background: lighten($color-background, 5%);
+      }
+
+      &:active {
+        background: darken($color-background, 5%);
+      }
+
+      &.incorrect {
+        background-color: $color-danger;
+        color: #fff;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    height: 100%;
+
+    .word-chunks-list {
+      display: block;
+      height: 100%;
+      flex-wrap: wrap;
+      overflow-x: hidden;
+      overflow-y: auto;
+      margin-top: -10px;
+      margin-left: -10px;
+
+      .word-chunks-item {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+// TestResult 컴포넌트
+.test-result {
+  $test-result-radius: 10px;
+  border-radius: $test-result-radius;
+
+  &.p-dialog {
+    .p-dialog-header {
+      border-top-right-radius: $test-result-radius;
+      border-top-left-radius: $test-result-radius;
+    }
+
+    .p-dialog-content:last-of-type {
+      border-bottom-right-radius: $test-result-radius;
+      border-bottom-left-radius: $test-result-radius;
+    }
+  }
+
+  .p-dialog-header {
+    .test-result-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      width: 100%;
+      border-bottom: 1px solid #ccc;
+
+      .test-result-header-title {
+        font-size: 38px;
+        font-weight: 600;
+      }
+
+      .test-result-header-subtitle {
+        margin-bottom: 6px;
+        color: $color-gray;
+      }
+    }
+
+    .p-dialog-header-icons {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+
+      button svg {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+      }
+    }
+  }
+
+  .test-result-body {
+    padding: 10px 20px;
+
+    .test-result-question-list {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      margin-top: 35px;
+
+      .test-result-question-item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .test-question-header {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          // font-size: 24px;
+
+          .test-question-mark {
+            font-size: 28px;
+            font-weight: 600;
+          }
+
+          .test-question-number {
+            font-size: 20px;
+            font-weight: 600;
+          }
+
+          .test-question-text {
+            margin-left: 10px;
+          }
+        }
+
+        .test-question-option-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding-left: 75px;
+
+          .test-question-option-item {
+            display: flex;
+            gap: 8px;
+            position: relative;
+            font-size: 14px;
+
+            .text-badge {
+              position: absolute;
+              top: 50%;
+              left: -48px;
+              transform: translateY(-50%);
+            }
+          }
+        }
+
+        .test-question-typing {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding-left: 75px;
+          font-size: 14px;
+
+          .test-question-typing-input {
+            display: flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 7px 12px;
+            border-radius: 2px;
+            background-color: #f4f4f4;
+          }
+
+          .test-question-typing-correct {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            color: $color-success;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    .p-dialog-header {
+      .test-result-header {
+        .test-result-header-title {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
+
+// AnswerMark 컴포넌트
+.answer-mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+
+  &.small {
+    &.correct::after {
+      font-size: 100px;
+    }
+
+    &.incorrect::after {
+      font-size: 100px;
+    }
+  }
+
+  &.border {
+    &.correct::after {
+      border: 2px solid $color-success;
+      border-radius: inherit;
+    }
+
+    &.incorrect::after {
+      border: 2px solid $color-danger;
+      border-radius: inherit;
+    }
+  }
+
+  &.correct::after {
+    content: 'O';
+    @include flex-center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: 800;
+    color: $color-success;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0.75;
+
+    background-color: rgba($color-success, 0.3);
+  }
+
+  &.incorrect::after {
+    content: 'X';
+    @include flex-center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: 800;
+    color: $color-danger;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    background-color: rgba($color-danger, 0.3);
+  }
+}
+
+// ProgressTimer 컴포넌트
+.progress-timer {
+  width: 100%;
+  height: 8px;
+  background: $color-gray;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .progress-timer__bar {
+    width: 0;
+    height: 100%;
+    background: $color-primary;
+    border-radius: inherit;
+    transition: width 0.1s linear;
+
+    &.bar-red {
+      background: $color-danger;
+    }
+  }
+}
+
+// ErrorModal 컴포넌트
+.error-modal {
+  .error-modal-message {
+  }
+
+  .error-modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  .activity-button-wrap {
+    // max-width: 50%;
+    margin-bottom: 0;
+    padding: 6px 0 0 0;
+
+    .activity-button {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  .keyboard-text {
+    display: none;
+  }
+}

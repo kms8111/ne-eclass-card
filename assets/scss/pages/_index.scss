@@ -1,0 +1,229 @@
+.index {
+  @include flex-center;
+  flex-direction: column;
+  height: 100%;
+
+  .index-content {
+    @include flex-center;
+    flex-direction: column;
+    width: 700px;
+    // min-width: 640px;
+    height: 100%;
+    margin-bottom: 20px;
+    border: 1px solid $color-gray;
+    overflow: auto;
+
+    .index-study-section {
+      width: 100%;
+      padding: 20px;
+      overflow: auto;
+
+      & + .index-study-section {
+        border-top: 1px solid $color-gray;
+      }
+
+      .index-study-section-header {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid $color-gray;
+
+        .index-study-section-title {
+          margin: 0;
+          font-size: 24px;
+          font-weight: 600;
+        }
+      }
+
+      .index-study-section-select {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+
+        span,
+        .p-dropdown {
+          font-size: 18px;
+        }
+      }
+
+      .index-study-item-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .index-study-item-content {
+        display: flex;
+        gap: 10px;
+
+        .p-button {
+          flex: 1;
+        }
+      }
+
+      .index-study-info {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $color-gray;
+
+        .index-study-info-title {
+          margin: 0;
+          font-size: 20px;
+          font-weight: 600;
+        }
+
+        .index-study-info-list {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          .index-study-info-item {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .index-study-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        &.empty {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          line-height: 1.65em;
+          font-size: 18px;
+          font-weight: 600;
+
+          .index-study-item-content {
+            align-self: stretch;
+          }
+        }
+      }
+    }
+
+    .index-study-select {
+      .index-study-select-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+
+        .index-study-select-item {
+          display: flex;
+          flex-direction: column;
+          width: 200px;
+          height: 100%;
+
+          .index-study-select-item-title {
+            margin: 0;
+            padding-bottom: 8px;
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          .select-box {
+            height: 100%;
+          }
+        }
+      }
+
+      .index-study-select-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .index-study-select-self {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+    }
+
+    .index-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .index-self__input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  .index {
+    .index-content {
+      width: calc(100% - 40px);
+
+      .index-study-section {
+        padding: 15px;
+      }
+
+      .index-study-select {
+        .index-study-select-list {
+          .index-study-select-item {
+            width: unset;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .index {
+    .index-content {
+      width: calc(100% - 20px);
+
+      .index-study-section {
+        padding: 12px;
+      }
+
+      .index-study-select {
+        .index-study-select-list {
+          grid-template-columns: repeat(1, 1fr);
+
+          .index-study-select-item {
+            .p-listbox {
+              max-height: 90px;
+
+              overflow: auto;
+
+              .p-listbox-list {
+                padding: 2px 0;
+
+                .p-listbox-item {
+                  padding: 6px 12px;
+                  font-size: 14px;
+                }
+
+                .p-listbox-empty-message {
+                  padding: 6px 12px;
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+
+        .p-button-label {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

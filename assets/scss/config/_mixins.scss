@@ -1,0 +1,62 @@
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// @mixin button($color: $color-primary, $is-dark: true) {
+//   @include hover;
+
+//   padding: 8px 16px;
+//   border-radius: 6px;
+//   background-color: $color;
+//   cursor: pointer;
+
+//   @if ($is-dark) {
+//     color: $color-light;
+//   } @else {
+//     color: $color-dark;
+//   }
+// }
+
+// @mixin hover() {
+//   &:hover {
+//     transform: scale(1.02);
+//   }
+
+//   &:active {
+//     transform: scale(0.99);
+//   }
+// }
+
+// @mixin hover-text($color: $color-text, $is-dark: false) {
+//   $hover-amount: 65%;
+//   $active-amount: 80%;
+
+//   &:hover {
+//     @if ($is-dark) {
+//       color: invert($color: darken($color-text, $hover-amount));
+//     } @else {
+//       color: invert($color: lighten($color-text, $hover-amount));
+//     }
+//   }
+
+//   &:active {
+//     @if ($is-dark) {
+//       color: invert($color: darken($color-text, $active-amount));
+//     } @else {
+//       color: invert($color: lighten($color-text, $active-amount));
+//     }
+//   }
+// }
+
+@mixin ellipsis($line-cnt: 1, $line-height: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-cnt; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: $line-height;
+  height: $line-height * $line-cnt; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}

@@ -1,0 +1,332 @@
+.study {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+
+  .study-ready {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    min-height: 375px;
+    padding: 30px 30px 15px 30px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+
+    .study-ready__title {
+      @include flex-center;
+      gap: 10px;
+      line-height: 24px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .study-ready__setting {
+      @include flex-center;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+      margin: 30px 0 20px 0;
+      line-height: 20px;
+      font-size: 14px;
+      color: #222328;
+
+      .study-ready__setting-item,
+      .switch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        width: 100%;
+        margin-top: 5px;
+
+        .study-ready__setting-item__label,
+        .switch-label {
+          align-self: flex-start;
+          font-size: 14px;
+          color: #222328;
+        }
+
+        .study-ready__setting-item__input,
+        .switch-input {
+          align-self: flex-start;
+          font-size: 14px;
+          color: #222328;
+        }
+      }
+    }
+
+    .study-ready__btns {
+      .study-ready__btns-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .study-activity {
+    @include flex-center;
+    flex-direction: column;
+    width: $activity-width;
+    $activity-top-height: 60px;
+
+    .study-activity__top {
+      @include flex-center;
+      gap: 6px;
+      position: relative;
+      width: 100%;
+      height: $activity-top-height;
+      padding-right: 25px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+
+      .question-number i {
+        transform: translateY(1px);
+        margin-right: 8px;
+        font-weight: 800;
+      }
+
+      .cancel-known {
+        position: absolute;
+        right: 60px;
+        bottom: 5px;
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+
+    .study-activity__content {
+      @include flex-center;
+      position: relative;
+      width: $activity-width;
+
+      .study-activity__content-carousel {
+        width: 600px;
+      }
+    }
+
+    .study-activity__bottom {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 15px;
+      height: 100px;
+      margin-top: 30px;
+
+      .study-activity__bottom-hint-message {
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+  }
+
+  .study-complete {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .study-complete__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 400px;
+
+      .study-complete__content {
+        @include flex-center;
+        flex-direction: column;
+        gap: 15px;
+        width: 600px;
+        margin-top: 30px;
+
+        .study-complete__title {
+          font-size: 30px;
+          font-weight: 600;
+          color: #fff;
+        }
+
+        .study-complete__message {
+          margin-top: 12px;
+          font-size: 18px;
+          font-weight: 600;
+          color: #fff;
+
+          p {
+            color: $color-success;
+
+            &.main-message {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              font-size: 64px;
+              font-weight: 800;
+              line-height: 18px;
+
+              strong {
+                color: $color-help;
+                font-weight: 800;
+              }
+            }
+
+            &.sub-message {
+              font-size: 32px;
+              font-weight: 600;
+              line-height: 10px;
+            }
+          }
+        }
+      }
+
+      .study-complete__image {
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .study-complete__bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+
+      .keyboard-text {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  @include study-card;
+}
+
+@media screen and (max-width: $tablet-width) {
+  .study {
+    padding-bottom: 5px;
+
+    .study-ready {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: space-between;
+      height: 100%;
+      padding: 20px 20px 15px 20px;
+
+      .study-ready__setting {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: flex-start;
+        flex: 1;
+      }
+
+      .study-ready__btns {
+        .study-ready__btns-bottom {
+          .p-button.p-button-sm {
+            padding: 0.4375rem 0.575rem;
+          }
+        }
+      }
+    }
+
+    .study-activity {
+      width: 100%;
+      height: 100%;
+
+      .study-activity__top {
+        height: auto;
+        padding: 5px 35px 10px 15px;
+
+        .cancel-known {
+          right: 0;
+        }
+      }
+
+      .study-activity__content {
+        flex: 1;
+        width: 100%;
+
+        .study-activity__content-carousel.p-carousel {
+          width: 100%;
+          height: 100%;
+
+          .p-carousel-content {
+            height: 100%;
+
+            .p-carousel-container {
+              height: 100%;
+
+              .p-carousel-items-container {
+                height: 100%;
+
+                .p-carousel-item {
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .study-activity__bottom {
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+        height: 54px;
+        margin-top: unset;
+      }
+    }
+
+    .study-complete {
+      .study-complete__top {
+        flex-direction: column;
+        flex: 1;
+
+        .study-complete__content {
+          width: 100%;
+          margin-top: 0;
+
+          .study-complete__title {
+            padding-top: 20px;
+          }
+
+          .study-complete__message {
+            margin: 0 0 10px 0;
+            transform: translateY(-10px);
+
+            p {
+              &.main-message {
+                @include flex-center;
+                font-size: 48px;
+              }
+
+              &.sub-message {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+
+        .study-complete__image {
+          margin-bottom: 10px;
+          overflow: hidden;
+        }
+      }
+
+      .study-complete__bottom {
+        margin-top: 15px;
+
+        .keyboard-text {
+          display: none;
+        }
+      }
+    }
+  }
+}

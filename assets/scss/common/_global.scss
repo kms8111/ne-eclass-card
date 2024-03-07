@@ -1,0 +1,58 @@
+// Global CSS
+body {
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.size-full {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.text-red {
+  color: $color-red;
+}
+
+.text-gray {
+  color: $color-gray;
+}
+
+.empty-message {
+  @include flex-center;
+  height: 100%;
+  font-size: 20px;
+  color: $color-gray;
+}
+
+// Scroll 설정
+/* width */
+::-webkit-scrollbar {
+  width: $main-scroll-width;
+  height: $main-scroll-width;
+}
+::-webkit-scrollbar:hover {
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  // background: #ccc;
+  border-radius: $main-scroll-width;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: $main-scroll-width;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b8b8b8;
+  cursor: pointer;
+}

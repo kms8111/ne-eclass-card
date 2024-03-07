@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+   <msapplication>
+     <tile>
+        <square70x70logo src="http://pic.neungyule.com/neungyule/img/ico/ne_70.png"/>
+        <square150x150logo src="http://pic.neungyule.com/neungyule/img/ico/ne_150.png"/>
+        <wide310x150logo src="http://pic.neungyule.com/neungyule/img/ico/ne_150.png"/>
+        <square310x310logo src="http://pic.neungyule.com/neungyule/img/ico/ne_310.png"/>
+     </tile>
+   </msapplication>
+</browserconfig>
